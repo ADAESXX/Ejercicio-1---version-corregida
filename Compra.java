@@ -29,12 +29,18 @@ public class Compra{
                 precio=1000;
                 break;
         }
-        float total= comprador.getCantidadBoletos()*precio;
-        if (comprador.getPresupuesto()>=total){
-            venderBoletos(localidad, comprador.getCantidadBoletos());
+
+        int disponibles = getDisponibilidad(localidad);
+        int solicitados = comprador.getCantidadBoletos();
+        int boletosPermitidos=Math.min(disponibles, solicitados);
+        float total= boletosPermitidos*precio;
+        if (comprador.getPresupuesto()>=total && boletosPermitidos>0){
+            venderBoletos(localidad, boletosPermitidos);
             caja+=total;
+            System.out.println("Se vendieron " + boletosPermitidos + "boletos");
             return total;
         }
+        System.out.println("No se pudo realizar la compra");
         return 0;
         
     }
