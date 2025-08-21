@@ -1,3 +1,4 @@
+//just a try
 import java.util.*;
 public class Compra{
 
@@ -85,4 +86,5 @@ public class Compra{
     public float getCaja() {
         return caja;
     }
+
 }
